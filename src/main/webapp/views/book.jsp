@@ -76,16 +76,14 @@
       <div class="col-md-4 jumbotron">
         <h4 class="text-center bg-info">BOOKING FORM</h4>
         <br>
-<c:choose>
-    <c:when test="${message=='Time slot taken'}">
+
+    <c:if test="${message=='Time slot taken'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>Time slot already taken..</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:otherwise>
-    </c:otherwise>
-  </c:choose>
+    </c:if>
+
 
        <form:form action="/book" modelAttribute="bookings" autocomplete="off">
        		<div class="mb-3">

@@ -4,25 +4,30 @@
 
 <jsp:include page = "base.jsp" />
 
-<c:choose>
-    <c:when test="${message=='Not detected'}">
+<style>
+body{
+background-image:url(/webresources/images/doctor-1.png);
+width: 100%;
+height: 100vh;
+background-size: cover;
+}
+</style>
+
+    <c:if test="${message=='Not detected'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>No Clinics Detected in the entered location...</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:when test="${message=='Logout'}">
+    </c:if>
+    <c:if test="${message=='Logout'}">
     	<div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>Logged Out Successfully..</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:otherwise>
-      
-    </c:otherwise>
-</c:choose>
+    </c:if>
+   
 
-<div class="d-flex justify-content-center align-items">
+<div class="d-flex justify-content-center align-items" id="home_content">
     <form action="${pageContext.request.contextPath}/searchResults" method="post" >
         <input type="text" class="search" name="location"
                placeholder="       Enter your locality name to view clinics near you      " required>

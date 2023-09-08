@@ -10,6 +10,7 @@ import com.arya.clinic.Entity.Clinic;
 
 @Repository
 public interface ClinicRepository extends JpaRepository<Clinic,Long> {
+	
 	public List<Clinic> findAllByClinicLocation(String location);
 	
 	public Clinic findByClinicEmail(String email);

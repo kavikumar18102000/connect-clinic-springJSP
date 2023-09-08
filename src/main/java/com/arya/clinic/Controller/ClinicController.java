@@ -6,9 +6,9 @@ import java.util.Arrays;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.sound.midi.Soundbank;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicInterface2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,9 +32,9 @@ import com.arya.clinic.Repository.UserRepostiroy;
 import com.arya.clinic.Services.ClinicService;
 import com.arya.clinic.Services.UserService;
 
-import jakarta.servlet.http.HttpSession;
 
 @Controller
+@RequestMapping("/clinic")
 public class ClinicController {
 	
 	@Autowired
@@ -47,7 +47,7 @@ public class ClinicController {
 	
 
 	
-	@GetMapping("/")
+	@GetMapping({"/","/home"})
 	public String home() {
 
 		return "home";
@@ -103,14 +103,14 @@ public class ClinicController {
 	}
 	
 	@PostMapping("/loginSuccess")
-	public String loginSuccess(@RequestParam("email") String email,@RequestParam("password") String password,RedirectAttributes redirectAttributes,HttpSession session,Model model) {
+	public String loginSuccess(@RequestParam("email") String email, @RequestParam("password") String password, RedirectAttributes redirectAttributes, HttpSession session, Model model) {
 
 
 		User user = userService.findUser(email);
 		
 				
 		if(user==null) {
-			redirectAttributes.addFlashAttribute("message", "No user found");
+			redirectAttributes.addFlashAttribute("message", "Invalid");
 			
 			return "redirect:/userlogin";
 		}
@@ -118,10 +118,10 @@ public class ClinicController {
 			session.setAttribute("username", user.getUserName());
 			session.setAttribute("useremail",user.getEmail());
 			
-			return "redirect:userhome";
+			return "userhome";
 		}
 		else {
-			redirectAttributes.addFlashAttribute("message", "Wrong Password");
+			redirectAttributes.addFlashAttribute("message", "Invalid");
 			return "redirect:/userlogin";
 		}
 		
@@ -146,6 +146,7 @@ public class ClinicController {
 	}
 	
 	@PostMapping("/userSearch")
+
 	public String userSearch(@RequestParam("location") String location,Model model,RedirectAttributes redirectAttributes) {
 
 		System.out.println(location);
@@ -161,6 +162,7 @@ public class ClinicController {
 	}
 	
 	@GetMapping("/bookform/{clinicEmail}")
+
 	public String bookForm(@PathVariable("clinicEmail") String clinicEmail,Model model,HttpSession session) {
 		Clinic clinic = clinicService.findClinic(clinicEmail);
 		model.addAttribute("clinicName", clinic.getClinicName());
@@ -174,6 +176,7 @@ public class ClinicController {
 	}
 	
 	@PostMapping("/book")
+
 	public String book(@ModelAttribute("bookings") Bookings book,@RequestParam("clinicEmail") String email,RedirectAttributes redirectAttributes) {
 		List<Bookings> list = clinicService.getAllBookings(book.getClinicName());
 		if(list.isEmpty()) {

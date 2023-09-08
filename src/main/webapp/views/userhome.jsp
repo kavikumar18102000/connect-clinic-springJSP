@@ -69,34 +69,31 @@
   </div>
 </nav>
 
- <c:choose>
-    <c:when test="${message=='Not detected'}">
+    <c:if test="${message=='Not detected'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>No clinics detected in the entered location</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:when test="${message=='Booking Ok'}">
+    </c:if>
+    <c:if test="${message=='Booking Ok'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>Appointment Booked Successfully</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-     <c:when test="${message=='Deleted'}">
+    </c:if>
+     <c:if test="${message=='Deleted'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>Deleted Appointment Successfully</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-     <c:when test="${message=='Not Deleted'}">
+    </c:if>
+     <c:if test="${message=='Not Deleted'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>Failed in deleting the appointment</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:otherwise>
-    </c:otherwise>
-  </c:choose>
+    </c:if>
+    
 
     <form class="d-flex justify-content-center align-items mt-5" role="search" action="/userSearch" method="post">
         <input class="form-control me-2 w-50" type="search" name="location" placeholder="     Search to book Appointments" aria-label="Search">

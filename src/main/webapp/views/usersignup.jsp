@@ -11,16 +11,12 @@
   <div class="col-md-4"></div>
   <div class="col-md-4 jumbotron">
   
- <c:choose>
-    <c:when test="${message=='invalid'}">
+    <c:if test="${message=='invalid'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
 		  <strong>User with this mail, already exists.</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:otherwise>
-    </c:otherwise>
-  </c:choose>
+    </c:if>
 
     <h4 class="text-center bg-info">SIGN UP FORM</h4>
     <br>

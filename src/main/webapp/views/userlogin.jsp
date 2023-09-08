@@ -11,29 +11,15 @@
 <div class="row">
   <div class="col-md-4"></div>
   <div class="col-md-4 jumbotron">
-  <c:choose>
-    <c:when test="${message=='No user found'}">
+ 
+    <c:if test="${message=='Invalid'}">
        <div class="alert alert-warning alert-dismissible fade show" role="alert">
-		  <strong>No User found with the entered email</strong> 
+		  <strong>Invalid Credentials</strong> 
 		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 	   </div>
-    </c:when>
-    <c:when test="${message=='Wrong Password'}">
-    	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		  <strong>Wrong Password..</strong> 
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	   </div>
-    </c:when>
-    <c:when test="${message=='valid signin'}">
-    	<div class="alert alert-warning alert-dismissible fade show" role="alert">
-		  <strong>signup successful, please login</strong> 
-		  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-	   </div>
-    </c:when>
-    <c:otherwise>
-      
-    </c:otherwise>
-</c:choose>
+    </c:if>
+
+   
     <h4 class="text-center bg-info">LOGIN FORM</h4>
     <br>
     <form action="/loginSuccess" method="post" autocomplete="off">
